@@ -13,6 +13,7 @@ public class FizzBuzz {
     public String get(int number) {
         // TODO
         //number
+
         return "";
     }
 }

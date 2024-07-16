@@ -11,9 +11,15 @@ package tdd.in.action.exercise;
 public class FizzBuzz {
 
     public String get(int number) {
-        // TODO
-        //number
+        StringBuilder strBuilder = new StringBuilder("");
+        if (number % 3 == 0) {
+            strBuilder.append("fizz");
+        }
 
-        return "";
+        if (number % 5 == 0) {
+            strBuilder.append("buzz");
+        }
+
+        return strBuilder.toString();
     }
 }

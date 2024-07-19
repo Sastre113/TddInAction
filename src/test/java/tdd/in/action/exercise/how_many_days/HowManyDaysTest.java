@@ -14,22 +14,44 @@ class HowManyDaysTest {
 
     @Order(1)
     @Test
-    public void givenAnyDate_thenReturnNotNullValue() {
+    public void givenTwoDate_thenReturnNotNullValue() {
         // Arrange
-        String date1 = "18/02/1993";
-        String date2 = "01/03/1993";
+        String date1 = "18/02/2024";
+        String date2 = "01/03/2024";
 
         // Act
         Integer days = howManyDays.howManyDays(date1, date2);
 
         // Assert
+        System.out.println("Número de días: " + days);
         Assertions.assertNotNull(days);
     }
 
     @Order(2)
     @Test
     public void givenWrongDate_thenThrowException() {
+        // Arrange
+        String date1 = "18/02/2024";
+        String date2 = "01/13/2024";
 
+        // Assert
+        Assertions.assertThrowsExactly(HowManyDaysException.class
+                ,() -> howManyDays.howManyDays(date1, date2));
+    }
+
+    @Order(3)
+    @Test
+    public void givenAnyDate_thenReturnNumbersOfDaysLikeInteger() {
+        // Arrange
+        String date1 = "18/02/2024";
+        String date2 = "01/03/2024";
+
+        // Act
+        Integer days = howManyDays.howManyDays(date1, date2);
+
+        // Assert
+        Assertions.assertNotNull(days);
+        Assertions.assertEquals(12, days);
     }
 
 }

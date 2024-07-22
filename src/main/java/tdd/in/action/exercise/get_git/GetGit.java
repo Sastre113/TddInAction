@@ -17,6 +17,7 @@ public class GetGit {
     private String owner;
     private String repository;
     private String url;
+    private GitHubRest gitHubRest;
 
     public GetGit() {
         this("Sastre113", "TddInAction");
@@ -26,8 +27,6 @@ public class GetGit {
         this.owner = owner;
         this.repository = repository;
         this.url = String.format("https://api.github.com/repos/%s/%s/commits", owner, repository);
+        this.gitHubRest = new GitHubRest();
     }
-
-
-
 }

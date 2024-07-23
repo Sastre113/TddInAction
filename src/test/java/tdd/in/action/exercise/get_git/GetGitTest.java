@@ -26,9 +26,9 @@ class GetGitTest {
     @Test
     public void constructorWithParameters(){
         // Arrange
-        String owner = "Sastre113";
-        String repository = "TddInAction";
-        String url = "https://api.github.com/repos/Sastre113/TddInAction/commits";
+        String owner = "Pepe";
+        String repository = "RepositorioDePrueba";
+        String url = "https://api.github.com/repos/Pepe/RepositorioDePrueba/commits";
 
         GetGit getGitMock = mock(GetGit.class);
         when(getGitMock.getOwner()).thenReturn(owner);
@@ -45,4 +45,11 @@ class GetGitTest {
     }
 
 
+    @Test
+    void runGetCommits() {
+    }
+
+    @Test
+    void imprimirCommit() {
+    }
 }

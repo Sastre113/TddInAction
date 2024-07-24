@@ -48,6 +48,7 @@ class GetGitTest {
 
     @Test
     void runGetCommits() {
+        getGit.runGetCommits();
         Assertions.assertEquals(1, 0);
     }
 

@@ -1,7 +1,13 @@
 package tdd.in.action.exercise.get_git;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import lombok.Getter;
 import tdd.in.action.exercise.get_git.model.Commit;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Source --> https://retosdeprogramacion.com/ejercicios
@@ -33,7 +39,10 @@ public class GetGit implements IGetGit{
 
     @Override
     public void runGetCommits() {
-
+        String commitsString = gitHubRest.getCommits(this.url);
+        Gson gson = new Gson();
+        List<Object> test = gson.fromJson(commitsString, ArrayList.class);
+        System.out.println(test.get(0));
     }
 
     @Override

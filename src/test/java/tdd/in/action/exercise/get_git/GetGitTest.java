@@ -2,7 +2,8 @@ package tdd.in.action.exercise.get_git;
 
 import org.junit.jupiter.api.*;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class GetGitTest {
@@ -47,9 +48,11 @@ class GetGitTest {
 
     @Test
     void runGetCommits() {
+        Assertions.assertEquals(1, 0);
     }
 
     @Test
     void imprimirCommit() {
+        Assertions.assertEquals(1, 0);
     }
 }

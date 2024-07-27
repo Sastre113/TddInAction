@@ -1,8 +1,6 @@
 package tdd.in.action.exercise.get_git;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 import lombok.Getter;
 import tdd.in.action.exercise.get_git.model.Commit;
 
@@ -42,6 +40,7 @@ public class GetGit implements IGetGit{
         String commitsString = gitHubRest.getCommits(this.url);
         Gson gson = new Gson();
         List<Object> test = gson.fromJson(commitsString, ArrayList.class);
+
         System.out.println(test.get(0));
     }
 

@@ -6,4 +6,5 @@ import lombok.Data;
 @Builder
 @Data
 public class Commit {
+    private String sha;
 }

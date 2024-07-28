@@ -1,6 +1,16 @@
 package tdd.in.action.exercise.get_git;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+import tdd.in.action.exercise.get_git.exception.GitHubException;
+import tdd.in.action.exercise.get_git.model.Commit;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class GitHubRestTest {
@@ -8,7 +18,7 @@ class GitHubRestTest {
     private static GitHubRest gitHubRest;
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         gitHubRest = new GitHubRest();
     }
 
@@ -18,7 +28,7 @@ class GitHubRestTest {
         // Arrange
         String url = "";
         // Act - Assert
-        Assertions.assertThrows(GitHubException.class, () ->gitHubRest.getCommits(url));
+        Assertions.assertThrows(GitHubException.class, () -> gitHubRest.getCommits(url));
     }
 
     @Test
@@ -26,7 +36,7 @@ class GitHubRestTest {
         // Arrange
         String url = "https://fake.github.com";
         // Act - Assert
-        Assertions.assertThrows(GitHubException.class, () ->gitHubRest.getCommits(url));
+        Assertions.assertThrows(GitHubException.class, () -> gitHubRest.getCommits(url));
     }
 
     @Test
@@ -40,8 +50,23 @@ class GitHubRestTest {
         Assertions.assertTrue(response.length() > 0);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"   "})
+    @NullAndEmptySource
+    void givenStringNullOrEmpty_WhenJsonToCommit_ThenThrowException(String json) {
+        Assertions.assertThrowsExactly(GitHubException.class, () -> gitHubRest.jsonToCommit(json));
+    }
+
+    @SneakyThrows
     @Test
-    void jsonToCommit() {
-        Assertions.assertEquals(1, 0);
+    void givenValidJson_WhenJsonToCommit_ThenReturnCommitObject() {
+        // Arrange
+        String json = new String(Files.readAllBytes(Paths.get("src/test/resources/json/commits.json")));
+
+        // Act
+        List<Commit> response = gitHubRest.jsonToCommit(json);
+
+        // Assert
+        Assertions.assertNotNull(response);
     }
 }

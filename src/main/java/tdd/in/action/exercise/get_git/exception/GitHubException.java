@@ -1,4 +1,4 @@
-package tdd.in.action.exercise.get_git;
+package tdd.in.action.exercise.get_git.exception;
 
 public class GitHubException extends RuntimeException {
 

@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import tdd.in.action.exercise.get_git.exception.GitHubException;
-import tdd.in.action.exercise.get_git.model.Commit;
+import tdd.in.action.exercise.get_git.model.GitHubResponseCommit;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -48,14 +48,14 @@ public class GitHubRest implements IGitHubRest {
     }
 
     @Override
-    public List<Commit> jsonToCommit(String json) {
+    public List<GitHubResponseCommit> jsonToCommit(String json) {
         if(json == null || json.isEmpty() || json.isBlank()) {
             throw new GitHubException("Error GitHubRest::jsonToCommit. El json no debe de estar vacío");
         }
 
         Gson gson = new Gson();
-        Type commitListType = new TypeToken<List<Commit>>() {}.getType();
-        return  gson.fromJson(json, commitListType);
+        Type commitListType = new TypeToken<List<GitHubResponseCommit>>() {}.getType();
+        return gson.fromJson(json, commitListType);
     }
 
 }

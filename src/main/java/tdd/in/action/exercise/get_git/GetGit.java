@@ -2,7 +2,7 @@ package tdd.in.action.exercise.get_git;
 
 import com.google.gson.Gson;
 import lombok.Getter;
-import tdd.in.action.exercise.get_git.model.Commit;
+import tdd.in.action.exercise.get_git.model.GitHubResponseCommit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class GetGit implements IGetGit{
     }
 
     @Override
-    public void imprimirCommit(Commit commit) {
+    public void imprimirCommit(GitHubResponseCommit commit) {
 
     }
 }

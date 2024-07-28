@@ -1,8 +1,8 @@
 package tdd.in.action.exercise.get_git;
 
-import tdd.in.action.exercise.get_git.model.Commit;
+import tdd.in.action.exercise.get_git.model.GitHubResponseCommit;
 
 public interface IGetGit {
     void runGetCommits();
-    void imprimirCommit(Commit commit);
+    void imprimirCommit(GitHubResponseCommit commit);
 }

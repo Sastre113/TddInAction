@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Builder
 @Data
-public class Commit {
-    private Author author;
-    private String message;
+public class Author {
+    private String name;
+    private String email;
+    private String date;
 }

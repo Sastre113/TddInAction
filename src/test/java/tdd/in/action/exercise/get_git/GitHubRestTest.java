@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import tdd.in.action.exercise.get_git.exception.GitHubException;
-import tdd.in.action.exercise.get_git.model.Commit;
+import tdd.in.action.exercise.get_git.model.GitHubResponseCommit;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -59,14 +59,43 @@ class GitHubRestTest {
 
     @SneakyThrows
     @Test
-    void givenValidJson_WhenJsonToCommit_ThenReturnCommitObject() {
+    void givenValidJson_WhenJsonToCommit_ThenReturnNotNull() {
         // Arrange
         String json = new String(Files.readAllBytes(Paths.get("src/test/resources/json/commits.json")));
 
         // Act
-        List<Commit> response = gitHubRest.jsonToCommit(json);
+        List<GitHubResponseCommit> response = gitHubRest.jsonToCommit(json);
 
         // Assert
         Assertions.assertNotNull(response);
+        Assertions.assertFalse(response.isEmpty());
+    }
+
+    @SneakyThrows
+    @Test
+    void givenValidJson_WhenJsonToCommit_ThenReturnListWithCommits() {
+        // Arrange
+        String sha = "f822ab283d129a20de1bc7f7c72256e2b61cf4d6";
+        String node_id = "C_kwDOMWsIHNoAKGY4MjJhYjI4M2QxMjlhMjBkZTFiYzdmN2M3MjI1NmUyYjYxY2Y0ZDY";
+        String htmlUrl = "https://github.com/Sastre113/TddInAction/commit/f822ab283d129a20de1bc7f7c72256e2b61cf4d6";
+        String authorName = "Miguel Á. Sastre";
+        String email = "sastre113@gmail.com";
+        String date = "2024-07-23T16:15:01Z";
+        String message = "Esqueleto para los test";
+
+        String json = new String(Files.readAllBytes(Paths.get("src/test/resources/json/commitTest.json")));
+
+        // Act
+        List<GitHubResponseCommit> response = gitHubRest.jsonToCommit(json);
+        GitHubResponseCommit firstCommit = response.get(0);
+
+        // Assert
+        Assertions.assertEquals(sha, firstCommit.getSha());
+        Assertions.assertEquals(node_id, firstCommit.getNode_id());
+        Assertions.assertEquals(htmlUrl, firstCommit.getHtml_url());
+        Assertions.assertEquals(authorName, firstCommit.getCommit().getAuthor().getName());
+        Assertions.assertEquals(email, firstCommit.getCommit().getAuthor().getEmail());
+        Assertions.assertEquals(date, firstCommit.getCommit().getAuthor().getDate());
+        Assertions.assertEquals(message, firstCommit.getCommit().getMessage());
     }
 }

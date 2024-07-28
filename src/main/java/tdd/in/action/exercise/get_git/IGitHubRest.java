@@ -1,10 +1,10 @@
 package tdd.in.action.exercise.get_git;
 
-import tdd.in.action.exercise.get_git.model.Commit;
+import tdd.in.action.exercise.get_git.model.GitHubResponseCommit;
 
 import java.util.List;
 
 public interface IGitHubRest {
     String getCommits(final String url);
-    List<Commit> jsonToCommit(final String json);
+    List<GitHubResponseCommit> jsonToCommit(final String json);
 }

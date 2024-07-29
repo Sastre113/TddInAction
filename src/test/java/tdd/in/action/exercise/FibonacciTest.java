@@ -22,7 +22,7 @@ class FibonacciTest {
     @Order(1)
     @ValueSource(ints = {1, 2, 3, 5})
     @DisplayName("Test que comprueba el tipo de retorno")
-    public void givenAnyNumber_thenNotEmptyList(int number){
+    void givenAnyNumber_thenNotEmptyList(int number){
         // Act
         List<Integer> sucessionList = fibonacci.generar(number);
 
@@ -36,7 +36,7 @@ class FibonacciTest {
     @Order(2)
     @ValueSource(ints = {1, 2, 3, 5})
     @DisplayName("Test que comprueba el tipo de retorno")
-    public void givenAnyNumber_thenListSizeEqualsNumber(int number){
+    void givenAnyNumber_thenListSizeEqualsNumber(int number){
         // Act
         List<Integer> sucessionList = fibonacci.generar(number);
 
@@ -47,7 +47,7 @@ class FibonacciTest {
     @Test
     @Order(3)
     @DisplayName("Test que comprueba los 10 primeros dígitos son correcto")
-    public void givenFirstTenNumbers_thenExpectedListIsSameAsGenerated(){
+    void givenFirstTenNumbers_thenExpectedListIsSameAsGenerated(){
         // Arrange
         List<Integer> expectedFibonacciList = Arrays.asList(0, 1, 1, 2, 3, 5, 8, 13, 21, 34);
         int number = expectedFibonacciList.size();

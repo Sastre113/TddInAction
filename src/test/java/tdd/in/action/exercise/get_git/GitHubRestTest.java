@@ -22,7 +22,6 @@ class GitHubRestTest {
         gitHubRest = new GitHubRest();
     }
 
-
     @Test
     void givenEmptyUrl_WhenGetCommits_ThenThrowException() {
         // Arrange

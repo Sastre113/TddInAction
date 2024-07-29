@@ -1,10 +1,8 @@
 package tdd.in.action.exercise.get_git;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import tdd.in.action.exercise.get_git.model.GitHubResponseCommit;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -37,15 +35,15 @@ public class GetGit implements IGetGit{
 
     @Override
     public void runGetCommits() {
-        String commitsString = gitHubRest.getCommits(this.url);
-        Gson gson = new Gson();
-        List<Object> test = gson.fromJson(commitsString, ArrayList.class);
-
-        System.out.println(test.get(0));
+        String commitsString = this.gitHubRest.getCommits(this.url);
+        List<GitHubResponseCommit> commitsList = this.gitHubRest.jsonToCommit(commitsString);
+        commitsList.forEach(this::printCommit);
     }
 
-    @Override
-    public void imprimirCommit(GitHubResponseCommit commit) {
-
+    private void printCommit(GitHubResponseCommit commit) {
+        System.out.println(String.format("""
+                --- COMMIT
+                %s
+                --- END COMMIT""", commit.toString()));
     }
 }
